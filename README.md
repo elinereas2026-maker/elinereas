@@ -5,7 +5,8 @@ Landing informativa en español para visibilizar a las mujeres emprendedoras del
 ## Incluye
 
 - Diseño adaptable a móvil, tableta y escritorio.
-- Galería de siete fotografías con flechas, miniaturas, navegación por teclado, gestos táctiles y vista ampliada.
+- Carrusel de siete tarjetas con tres historias visibles en escritorio, desplazamiento táctil, flechas y navegación por teclado. Cada tarjeta abre su fotografía y descripción completa.
+- Composición basada en la referencia de la clienta: portada compacta, cuatro pilares centrados, historias junto a su presentación, sección de voces y detalles rosados en los bordes.
 - Misión, visión, propósito y valores proporcionados por el proyecto.
 - Llamadas a participar y contacto por Instagram.
 - Menú móvil, enlaces accesibles, foco visible y soporte para movimiento reducido.

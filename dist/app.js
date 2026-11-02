@@ -11,76 +11,103 @@ const stories = [
   { image: 'encuentros-del-centro.jpg', category: 'Tejer comunidad', title: 'El valor de estar presente', description: 'Hay mujeres que, con su trabajo de cada día, hacen crecer mucho más que un negocio: construyen encuentros, confianza y comunidad. Su dedicación nos inspira a reconocerlas y acompañarlas. Porque cuando valoramos su esfuerzo, también ayudamos a que sus sueños encuentren nuevas posibilidades.', alt: 'Una mujer atiende su puesto de productos y bebidas mientras un hombre se acerca.', position: 'center' }
 ];
 
-let currentStory = 0;
-const image = document.querySelector('#story-image');
-const title = document.querySelector('#story-title');
-const description = document.querySelector('#story-description');
-const category = document.querySelector('#story-category');
-const photoOpen = document.querySelector('.photo-open');
-const thumbnails = Array.from(document.querySelectorAll('[data-story]'));
+const rail = document.querySelector('.story-rail');
 const dialog = document.querySelector('#photo-dialog');
-const dialogImage = document.querySelector('#dialog-image');
-const dialogCaption = document.querySelector('#dialog-caption');
+let currentStory = 0;
+let lastOpener = null;
+const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const pad = number => String(number).padStart(2, '0');
+
+function element(tag, className, text) {
+  const node = document.createElement(tag);
+  node.className = className;
+  if (text) node.textContent = text;
+  return node;
+}
+
+stories.forEach((story, index) => {
+  const card = element('article', 'story-card');
+  card.setAttribute('aria-label', 'Historia ' + (index + 1) + ' de 7: ' + story.title);
+  const photo = element('button', 'card-photo');
+  photo.setAttribute('aria-label', 'Ver fotografía e historia: ' + story.title);
+  photo.setAttribute('aria-haspopup', 'dialog');
+  const image = document.createElement('img');
+  image.src = 'assets/' + story.image;
+  image.alt = story.alt;
+  image.loading = 'lazy';
+  image.width = 1080;
+  image.height = 734;
+  photo.append(image);
+  const copy = element('div', 'card-copy');
+  const category = element('span', 'eyebrow', story.category);
+  const title = element('h3', '', story.title);
+  const description = element('p', '', story.description);
+  const link = element('button', 'card-link', 'Conoce su historia ');
+  const arrow = element('span', '', '→');
+  arrow.setAttribute('aria-hidden', 'true');
+  link.append(arrow);
+  link.setAttribute('aria-label', 'Leer historia: ' + story.title);
+  link.setAttribute('aria-haspopup', 'dialog');
+  [photo, link].forEach(button => button.addEventListener('click', () => {
+    lastOpener = button;
+    showStory(index);
+    dialog.showModal();
+    document.body.classList.add('dialog-open');
+  }));
+  copy.append(category, title, description, link);
+  card.append(photo, copy);
+  rail.append(card);
+});
+
+function galleryState() {
+  const cardWidth = rail.firstElementChild.getBoundingClientRect().width;
+  const gap = parseFloat(getComputedStyle(rail).columnGap);
+  const step = cardWidth + gap;
+  const visible = Math.max(1, Math.floor((rail.clientWidth + gap + 1) / step));
+  const max = Math.max(0, stories.length - visible);
+  const index = Math.min(max, Math.max(0, Math.round(rail.scrollLeft / step)));
+  return { index, visible, max, step };
+}
+
+function updateRange() {
+  const state = galleryState();
+  const end = Math.min(stories.length, state.index + state.visible);
+  document.querySelector('#gallery-range').textContent = state.visible === 1 ? pad(state.index + 1) : pad(state.index + 1) + '–' + pad(end);
+}
+
+function moveGallery(direction) {
+  const state = galleryState();
+  let index = state.index + direction;
+  if (index > state.max) index = 0;
+  if (index < 0) index = state.max;
+  rail.scrollTo({ left: index * state.step, behavior: motion.matches ? 'instant' : 'smooth' });
+}
+
+document.querySelector('#previous-story').addEventListener('click', () => moveGallery(-1));
+document.querySelector('#next-story').addEventListener('click', () => moveGallery(1));
+rail.addEventListener('scroll', updateRange, { passive: true });
+new ResizeObserver(updateRange).observe(rail);
+rail.addEventListener('keydown', event => {
+  if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+    event.preventDefault();
+    moveGallery(event.key === 'ArrowRight' ? 1 : -1);
+  }
+});
+updateRange();
 
 function showStory(index) {
   currentStory = (index + stories.length) % stories.length;
   const story = stories[currentStory];
-  image.src = `assets/${story.image}`;
-  image.alt = story.alt;
-  image.style.objectPosition = story.position;
-  title.textContent = story.title;
-  description.textContent = story.description;
-  category.textContent = story.category;
-  document.querySelector('#story-number').textContent = String(currentStory + 1).padStart(2, '0');
-  photoOpen.setAttribute('aria-label', `Ampliar fotografía: ${story.title}`);
-  thumbnails.forEach((thumbnail, i) => {
-    thumbnail.classList.toggle('selected', i === currentStory);
-    thumbnail.setAttribute('aria-pressed', String(i === currentStory));
-  });
-  if (dialog.open) updateDialog();
+  document.querySelector('#dialog-image').src = 'assets/' + story.image;
+  document.querySelector('#dialog-image').alt = story.alt;
+  document.querySelector('#dialog-title').textContent = story.title;
+  document.querySelector('#dialog-category').textContent = story.category;
+  document.querySelector('#dialog-description').textContent = story.description;
+  document.querySelector('#dialog-counter').textContent = pad(currentStory + 1) + ' / 07';
 }
 
-function updateDialog() {
-  const story = stories[currentStory];
-  dialogImage.src = `assets/${story.image}`;
-  dialogImage.alt = story.alt;
-  dialogCaption.textContent = `${currentStory + 1} / ${stories.length} — ${story.title}`;
-}
-
-document.querySelector('#previous-story').addEventListener('click', () => showStory(currentStory - 1));
-document.querySelector('#next-story').addEventListener('click', () => showStory(currentStory + 1));
-thumbnails.forEach(thumbnail => thumbnail.addEventListener('click', () => showStory(Number(thumbnail.dataset.story))));
-document.querySelector('.story-viewer').addEventListener('keydown', event => {
-  if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-    event.preventDefault();
-    showStory(currentStory + (event.key === 'ArrowRight' ? 1 : -1));
-  }
-});
-
-// El carrusel no avanza solo: la lectura y el movimiento quedan en manos de cada visitante.
-let touchStart = null;
-photoOpen.addEventListener('touchstart', event => {
-  touchStart = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
-}, { passive: true });
-let suppressPhotoClick = false;
-photoOpen.addEventListener('touchend', event => {
-  if (!touchStart) return;
-  const dx = event.changedTouches[0].clientX - touchStart.x;
-  const dy = event.changedTouches[0].clientY - touchStart.y;
-  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.3) {
-    suppressPhotoClick = true;
-    showStory(currentStory + (dx < 0 ? 1 : -1));
-    setTimeout(() => { suppressPhotoClick = false; }, 400);
-  }
-  touchStart = null;
-}, { passive: true });
-
-photoOpen.addEventListener('click', () => {
-  if (suppressPhotoClick) return;
-  updateDialog();
-  dialog.showModal();
-  document.body.classList.add('dialog-open');
-});
+document.querySelector('#dialog-previous').addEventListener('click', () => showStory(currentStory - 1));
+document.querySelector('#dialog-next').addEventListener('click', () => showStory(currentStory + 1));
 document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => {
   if (event.target !== dialog) return;
@@ -89,7 +116,7 @@ dialog.addEventListener('click', event => {
 });
 dialog.addEventListener('close', () => {
   document.body.classList.remove('dialog-open');
-  photoOpen.focus({ preventScroll: true });
+  lastOpener?.focus({ preventScroll: true });
 });
 dialog.addEventListener('keydown', event => {
   if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
@@ -126,6 +153,6 @@ if ('IntersectionObserver' in window) {
       navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
     });
   }, { rootMargin: '-15% 0px -55% 0px', threshold: 0 });
-  ['inicio', 'historias', 'nosotras', 'comunidad'].forEach(id => observer.observe(document.getElementById(id)));
+  ['inicio', 'historias', 'voces', 'nosotras', 'contacto'].forEach(id => observer.observe(document.getElementById(id)));
 }
 document.querySelector('#year').textContent = String(new Date().getFullYear());
