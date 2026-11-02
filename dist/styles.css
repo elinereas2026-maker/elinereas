@@ -9,5 +9,5 @@
 .photo-open>img,.community-image>img{inset:0}
 .story-viewer>*,.community-grid>*,.about-grid>*{min-width:0}
 @media(max-width:700px){.hero h1 br:first-of-type{display:initial}.hero h1 br:first-of-type:after{content:none}.hero-seal{top:auto;bottom:380px}}
-@media(max-width:700px){.story-photo-wrap,.photo-open{min-height:0}.image-sticker{right:8px}}
+@media(max-width:700px){.story-photo-wrap,.photo-open,.community-image{min-height:0}.image-sticker{right:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
