@@ -15,7 +15,9 @@ for (const match of html.matchAll(/\b(?:src|href)="([^"]+)"/g)) {
 }
 const script = await readFile(path.join(root, 'app.js'), 'utf8');
 new vm.Script(script);
-for (const match of script.matchAll(/image: '([^']+)'/g)) await access(path.join(root, 'assets', match[1]));
-assert.equal((script.match(/image: '/g) || []).length, 7, 'Expected seven photographs');
+const gallery = await readFile(path.join(root, 'gallery.js'), 'utf8');
+new vm.Script(gallery);
+for (const match of gallery.matchAll(/image: '([^']+)'/g)) await access(path.join(root, 'assets', match[1]));
+assert.equal((gallery.match(/image: '/g) || []).length, 7, 'Expected seven photographs');
 assert(html.includes('lang="es"'), 'Spanish document language is required');
 console.log('OK: links, anchors, seven gallery photographs, document language, and JavaScript syntax.');

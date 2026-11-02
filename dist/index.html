@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#8e2549">
-  <meta name="description" content="ELINEREAS visibiliza a las mujeres emprendedoras del centro de Medellín. Mujeres reales, historias que dejan huella.">
+  <meta name="description" content="ELINEREAS reconoce el trabajo de las mujeres emprendedoras del centro de Medellín. Una mirada a su esfuerzo, dedicación y perseverancia.">
   <meta property="og:title" content="ELINEREAS — Mujeres que inspiran">
   <meta property="og:description" content="Conoce a las mujeres que, con su trabajo y su valentía, construyen un mejor futuro para ellas y sus familias.">
   <meta property="og:type" content="website">
@@ -14,7 +14,9 @@
   <title>ELINEREAS — Mujeres que inspiran</title>
   <link rel="icon" type="image/svg+xml" href="assets/flor.svg">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="gallery.css">
   <script src="app.js" defer></script>
+  <script src="gallery.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -24,8 +26,8 @@
       <button class="menu-toggle" aria-expanded="false" aria-controls="navegacion">Menú <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <nav id="navegacion" aria-label="Navegación principal">
         <a href="#inicio" class="nav-link is-active">Inicio</a>
-        <a href="#historias" class="nav-link">Historias</a>
-        <a href="#voces" class="nav-link">Sus voces</a>
+        <a href="#historias" class="nav-link">Galería</a>
+        <a href="#voces" class="nav-link">Instagram</a>
         <a href="#nosotras" class="nav-link">Nosotras</a>
         <a href="#contacto" class="nav-link">Contacto</a>
         <a class="social-link" href="https://www.instagram.com/elinereas.med/" target="_blank" rel="noopener noreferrer" aria-label="ELINEREAS en Instagram, abre una nueva pestaña"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7"/></svg></a>
@@ -39,32 +41,33 @@
         <img class="hero-photo" src="assets/sonrisa-que-inspira.jpg" alt="Una mujer sonríe detrás de su puesto de bebidas en una calle comercial de Medellín." width="1080" height="734" fetchpriority="high">
         <div class="hero-quote">Detrás de cada<br>mujer, hay una<br>fuerza que<br>transforma.<span aria-hidden="true">♡</span></div>
       </div>
-      <div class="container hero-inner"><div class="hero-copy"><span class="eyebrow">Historias</span><h1>Mujeres reales,<br>historias que<br><em>dejan huella.</em></h1><p>Conoce a las mujeres que, con su esfuerzo, su talento y su perseverancia, construyen un mejor futuro para ellas y sus familias.</p><a class="button" href="#historias">Ver todas las historias <span aria-hidden="true">→</span></a></div></div>
+      <div class="container hero-inner"><div class="hero-copy"><span class="eyebrow">Mujeres que inspiran</span><h1>Mujeres reales,<br>esfuerzos que<br><em>dejan huella.</em></h1><p>Celebramos a las mujeres que, con su esfuerzo, su talento y su perseverancia, construyen un mejor futuro para ellas y sus familias.</p><a class="button" href="#historias">Una mirada a su trabajo <span aria-hidden="true">→</span></a></div></div>
     </section>
     <div class="values-strip ornament">
       <div class="container values-grid">
-        <div><span class="value-symbol" aria-hidden="true">✦</span><h2>Historias reales</h2><p>Mujeres que inspiran con<br>su fuerza y valentía.</p></div>
+        <div><span class="value-symbol" aria-hidden="true">✦</span><h2>Mujeres reales</h2><p>Mujeres que inspiran con<br>su fuerza y valentía.</p></div>
         <div><svg viewBox="0 0 44 44" aria-hidden="true"><path d="m3 34 13-24 9 15 7-13 10 22M11 20l5 3 4-4M28 20l4 3 4-2M22 9l3-5 4 6"/></svg><h2>Medellín y Colombia</h2><p>Nuestro territorio,<br>nuestra gente, nuestras raíces.</p></div>
         <div><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 38V17M22 30C7 31 7 17 7 17s15-1 15 13ZM22 22C36 22 37 6 37 6S22 6 22 22Z"/></svg><h2>Trabajo y emprendimiento</h2><p>Porque el esfuerzo también<br>es una forma de cambiar el mundo.</p></div>
         <div><span class="value-symbol heart-symbol" aria-hidden="true">♡</span><h2>Empoderamiento</h2><p>Mujeres que sueñan,<br>que luchan y que transforman.</p></div>
       </div>
     </div>
-    <section id="historias" class="stories ornament">
-      <div class="container stories-layout">
-        <div class="stories-intro"><span class="eyebrow">Historias</span><h2>Ellas tienen<br>mucho por contar.</h2><p>Cada historia es una oportunidad para conocer, escuchar y aprender. Aquí reconocemos a las mujeres que, con su trabajo, su talento y su valentía, están transformando su realidad y la de su entorno.</p><a class="button" href="#carrusel">Conoce todas las historias <span aria-hidden="true">→</span></a></div>
-        <div id="carrusel" class="carousel" role="region" aria-roledescription="carrusel" aria-label="Historias de mujeres trabajadoras">
-          <div class="story-rail" tabindex="0" aria-label="Fotografías e historias; usa las flechas para explorar"></div>
-          <noscript><p>Activa JavaScript para explorar las siete historias, o conócelas en <a href="https://www.instagram.com/elinereas.med/">nuestro Instagram</a>.</p></noscript>
-          <div class="carousel-bottom"><span class="gallery-counter" aria-live="polite" aria-atomic="true">Historias <span id="gallery-range">01–03</span> de 07</span><div class="carousel-controls"><button id="previous-story" class="circle-button" aria-label="Ver historias anteriores">←</button><button id="next-story" class="circle-button" aria-label="Ver siguientes historias">→</button></div></div>
+    <section id="historias" class="gallery-section ornament" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="gallery-heading"><div><span class="eyebrow">Una mirada a su trabajo</span><h2 id="gallery-heading">El esfuerzo también<br><em>merece ser visto.</em></h2></div><p>En las calles de Medellín, el trabajo de las mujeres forma parte de nuestra vida cotidiana. Esta galería reconoce su dedicación, su valentía y sus ganas de salir adelante.</p></div>
+        <div id="carrusel" class="photo-carousel" role="region" aria-roledescription="carrusel" aria-label="Fotografías de mujeres trabajadoras">
+          <div class="photo-stage"><div class="photo-track" tabindex="0" aria-label="Galería; usa las flechas del teclado o desliza para cambiar de fotografía"></div><button id="previous-photo" class="gallery-arrow gallery-arrow-prev" aria-label="Fotografía anterior"><span aria-hidden="true">←</span></button><button id="next-photo" class="gallery-arrow gallery-arrow-next" aria-label="Siguiente fotografía"><span aria-hidden="true">→</span></button></div>
+          <div class="photo-caption" aria-live="polite" aria-atomic="true"><div><span id="photo-category" class="eyebrow">La alegría de seguir</span><h3 id="photo-title">Una sonrisa que abre caminos</h3></div><p id="photo-description">Detrás de cada jornada hay una mujer que lucha por sus sueños, trabaja con valentía y construye un futuro mejor para ella y su familia. Mujeres que convierten sus ideas en oportunidades y sus esfuerzos en sueños que poco a poco se hacen realidad.</p></div>
+          <div class="gallery-navigation"><span class="photo-count"><b id="photo-number">01</b><span aria-hidden="true"> / </span><span class="sr-only">de </span>07</span><div id="photo-dots" class="photo-dots" aria-label="Elegir fotografía"></div><span class="gallery-hint"><span aria-hidden="true">↔</span> Desliza para explorar</span></div>
+          <noscript><img src="assets/sonrisa-que-inspira.jpg" alt="Una vendedora sonríe detrás de su puesto de bebidas."><p>Encuentra más contenido en <a href="https://www.instagram.com/elinereas.med/">nuestro Instagram</a>.</p></noscript>
         </div>
-        <p class="gallery-note">Con sus manos, su dedicación y su esperanza, estas mujeres hacen florecer oportunidades incluso en los días más difíciles.</p>
+        <p class="gallery-closing">Con sus manos, su dedicación y su esperanza, estas mujeres hacen florecer oportunidades incluso en los días más difíciles.</p>
       </div>
     </section>
     <section id="voces" class="voices ornament">
       <div class="container voices-layout">
         <a class="voices-media" href="https://www.instagram.com/elinereas.med/" target="_blank" rel="noopener noreferrer" aria-label="Conoce las publicaciones de ELINEREAS en Instagram, abre una nueva pestaña"><img src="assets/mujeres-del-tinto.jpg" alt="Dos mujeres emprendedoras junto a sus puestos de café y bebidas." width="1080" height="724" loading="lazy"><span class="media-link" aria-hidden="true">↗</span></a>
-        <div class="voices-copy"><span class="eyebrow">Voces que inspiran</span><h2>Escucha sus voces</h2><p>Más allá de las palabras, están sus experiencias. Cada mujer tiene algo que enseñarnos: su manera de comenzar, sus sueños y la fuerza de seguir adelante.</p><p>Acércate a nuestras publicaciones y conoce más de ELINEREAS.</p><a class="button" href="https://www.instagram.com/elinereas.med/" target="_blank" rel="noopener noreferrer">Descubre más en Instagram <span aria-hidden="true">→</span><span class="sr-only">, abre una nueva pestaña</span></a></div>
-        <p class="voices-quote">“Sus voces<br>también<br>cambian<br>el mundo.”<span aria-hidden="true">✦</span></p>
+        <div class="voices-copy"><span class="eyebrow">Seamos comunidad</span><h2>Inspiración que nos une</h2><p>Creemos en el valor de reconocer el trabajo de las mujeres y compartir mensajes que inspiren respeto, sororidad y nuevas oportunidades.</p><p>Acompaña el proyecto y descubre nuestras publicaciones en Instagram.</p><a class="button" href="https://www.instagram.com/elinereas.med/" target="_blank" rel="noopener noreferrer">Síguenos en Instagram <span aria-hidden="true">→</span><span class="sr-only">, abre una nueva pestaña</span></a></div>
+        <p class="voices-quote">El esfuerzo<br>también<br>hace florecer<br>el futuro.<span aria-hidden="true">✦</span></p>
       </div>
     </section>
     <section id="nosotras" class="about">
@@ -75,12 +78,12 @@
           <article><span class="purpose-mark" aria-hidden="true">❀</span><h3>Nuestra visión</h3><p>Ser una marca referente en Medellín y a nivel nacional por empoderar y visibilizar a mujeres emprendedoras, destacando su impacto social y económico. Queremos ser una plataforma que inspire, conecte y transforme vidas a través de sus historias y proyectos.</p></article>
         </div>
         <div class="principles"><span>Lo que nos une</span><ul><li>Empoderamiento</li><li>Sororidad</li><li>Respeto</li><li>Inclusión</li><li>Autenticidad</li></ul></div>
-        <div id="comunidad" class="support"><h3>Pequeños gestos.<br><em>Grandes oportunidades.</em></h3><div><b>Valora su trabajo</b><p>Compra en los negocios de las mujeres de tu comunidad.</p></div><div><b>Comparte su voz</b><p>Ayuda a que sus historias lleguen a más personas.</p></div><div><b>Conectemos historias</b><p>Recomiéndanos a una mujer que nos inspire.</p></div></div>
+        <div id="comunidad" class="support"><h3>Pequeños gestos.<br><em>Grandes oportunidades.</em></h3><div><b>Valora su trabajo</b><p>Compra en los negocios de las mujeres de tu comunidad.</p></div><div><b>Comparte el proyecto</b><p>Ayuda a que más personas reconozcan su esfuerzo.</p></div><div><b>Construyamos comunidad</b><p>Acércate al proyecto y comparte nuestro propósito.</p></div></div>
       </div>
     </section>
-    <section id="contacto" class="contact-banner ornament"><div class="container contact-layout"><div class="contact-copy"><span class="eyebrow">¿Conoces a una mujer<br>que merezca ser escuchada?</span><p>Tal vez sea una mujer que trabaja en las calles, una emprendedora, una madre o alguien que ha transformado su comunidad. Queremos conocerla.</p><a class="button" href="https://www.instagram.com/elinereas.med/" target="_blank" rel="noopener noreferrer">Recomienda una historia <span aria-hidden="true">→</span><span class="sr-only"> en Instagram, abre una nueva pestaña</span></a></div><p class="contact-quote">Porque cada mujer<br>tiene algo que enseñarnos.<span aria-hidden="true">♡</span></p></div></section>
+    <section id="contacto" class="contact-banner ornament"><div class="container contact-layout"><div class="contact-copy"><span class="eyebrow">¿Te sumas a reconocer<br>su trabajo?</span><p>Cada gesto cuenta: valorar sus negocios, compartir el proyecto y crear una comunidad que reconozca su esfuerzo. Conversemos y hagamos crecer este propósito.</p><a class="button" href="https://www.instagram.com/elinereas.med/" target="_blank" rel="noopener noreferrer">Conversemos en Instagram <span aria-hidden="true">→</span><span class="sr-only">, abre una nueva pestaña</span></a></div><p class="contact-quote">Porque cada mujer<br>tiene algo que enseñarnos.<span aria-hidden="true">♡</span></p></div></section>
   </main>
   <footer><div class="container footer-main"><a class="brand" href="#inicio" aria-label="ELINEREAS, volver al inicio"><span class="brand-flower" aria-hidden="true">❦</span><span class="brand-name">ELINEREAS<small>MUJERES QUE INSPIRAN</small></span></a><p>Mujeres que inspiran, luchan y transforman.<br>Medellín, Colombia.</p><a class="instagram-link" href="https://www.instagram.com/elinereas.med/" target="_blank" rel="noopener noreferrer">@elinereas.med <span aria-hidden="true">↗</span><span class="sr-only">, abre una nueva pestaña</span></a></div><div class="container footer-bottom"><span>© <span id="year">2026</span> ELINEREAS</span><span>Hecho con propósito y con el corazón <span aria-hidden="true">♡</span></span><a href="#inicio">Volver arriba ↑</a></div></footer>
-  <dialog id="photo-dialog" aria-labelledby="dialog-title"><button class="dialog-close circle-button" aria-label="Cerrar historia">×</button><div class="dialog-layout"><div class="dialog-photo"><img id="dialog-image" src="assets/sonrisa-que-inspira.jpg" alt=""></div><div class="dialog-story"><span id="dialog-category" class="eyebrow"></span><h2 id="dialog-title"></h2><p id="dialog-description"></p><div class="dialog-controls"><span id="dialog-counter"></span><div><button id="dialog-previous" class="circle-button" aria-label="Historia anterior">←</button><button id="dialog-next" class="circle-button" aria-label="Siguiente historia">→</button></div></div></div></div></dialog>
+  <dialog id="photo-dialog" class="photo-lightbox" aria-labelledby="lightbox-caption"><button class="lightbox-close" aria-label="Cerrar fotografía ampliada">×</button><img id="lightbox-image" src="assets/sonrisa-que-inspira.jpg" alt=""><div class="lightbox-footer"><button id="lightbox-previous" class="lightbox-arrow" aria-label="Fotografía ampliada anterior">←</button><p id="lightbox-caption">Una sonrisa que abre caminos</p><button id="lightbox-next" class="lightbox-arrow" aria-label="Siguiente fotografía ampliada">→</button></div></dialog>
 </body>
 </html>
