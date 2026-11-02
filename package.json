@@ -1,0 +1,12 @@
+{
+  "name": "elinereas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing informativa de ELINEREAS: mujeres que inspiran, luchan y transforman.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
