@@ -38,6 +38,10 @@ Las fotografías fueron suministradas para este proyecto y se conservan sin alte
 
 ## Publicación
 
-`dist/` contiene el sitio estático completo y puede publicarse en GitHub Pages, Cloudflare Pages o cualquier hosting estático. El workflow incluido publica en GitHub Pages desde `main` una vez que Pages esté configurado con **GitHub Actions** como fuente en la configuración del repositorio. La configuración de Sites se guarda en `.openai/hosting.json`.
+`dist/` contiene el sitio estático completo y puede publicarse en GitHub Pages, Cloudflare Pages o cualquier hosting estático. GitHub Pages está configurado con **GitHub Actions** y el workflow incluido publica automáticamente los cambios enviados a `main`.
+
+Dirección de la web: [elinereas2026-maker.github.io/elinereas](https://elinereas2026-maker.github.io/elinereas/).
+
+La configuración adicional de Sites se guarda en `.openai/hosting.json`.
 
 Para actualizar el destino de Open Graph al usar otro dominio, cambia `og:image` en `dist/index.html`.
