@@ -34,6 +34,7 @@ npm run check
 - `dist/gallery.js` y `dist/gallery.css`: fotografías, descripciones generales y carrusel.
 - `dist/assets/`: las siete fotos suministradas y el símbolo floral.
 - `dist/assets/logo-elinereas-rosa.png`: logotipo original «Logotipo ornamental Elnereas en rosa.png», utilizado en la cabecera y el pie de página.
+- `dist/assets/cat.png`: favicon de la pestaña del navegador, suministrado por el proyecto.
 
 Las descripciones de la galería son reflexiones editoriales sobre las fotografías. No atribuyen nombres, testimonios ni datos biográficos a las personas retratadas. No se añadieron entrevistas o cifras sin fuentes. El contacto dirige al perfil real de Instagram; no hay un formulario que almacene datos.
 
