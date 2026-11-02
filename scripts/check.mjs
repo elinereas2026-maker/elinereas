@@ -11,7 +11,7 @@ assert.equal(ids.length, new Set(ids).size, 'Duplicate HTML ids');
 for (const match of html.matchAll(/\b(?:src|href)="([^"]+)"/g)) {
   const url = match[1];
   if (url.startsWith('#')) assert(ids.includes(url.slice(1)), `Missing anchor: ${url}`);
-  else if (!/^https?:/.test(url)) await access(path.join(root, url));
+  else if (!/^https?:/.test(url)) await access(path.join(root, url.split(/[?#]/)[0]));
 }
 const script = await readFile(path.join(root, 'app.js'), 'utf8');
 new vm.Script(script);
