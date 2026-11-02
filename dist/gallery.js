@@ -21,6 +21,14 @@ const caption = {
 const dots = document.querySelector('#photo-dots');
 const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const dialog = document.querySelector('#photo-dialog');
+const carousel = document.querySelector('.photo-carousel');
+const playbackButton = document.querySelector('#gallery-playback');
+const autoplayDelay = 6000;
+let autoplayEnabled = !motion.matches;
+let autoplayTimer = null;
+let galleryInView = false;
+let galleryHovered = false;
+let galleryPressed = false;
 let activePhoto = 0;
 let requestedPhoto = 0;
 let enlargedPhoto = 0;
@@ -59,6 +67,7 @@ portraits.forEach((portrait, index) => {
     enlargePhoto(index);
     dialog.showModal();
     document.body.classList.add('dialog-open');
+    syncAutoplay();
   });
   slide.append(opener);
   track.append(slide);
@@ -96,9 +105,12 @@ function goToPhoto(index, instant = false) {
   requestedPhoto = target;
   const wraps = Math.abs(target - activePhoto) > 1;
   track.scrollTo({ left: photoOffset(target), behavior: instant || motion.matches || wraps ? 'instant' : 'smooth' });
+  syncAutoplay();
 }
 
 track.addEventListener('scroll', () => {
+  clearTimeout(autoplayTimer);
+  autoplayTimer = null;
   clearTimeout(settleTimer);
   settleTimer = setTimeout(() => {
     let closest = 0;
@@ -109,6 +121,7 @@ track.addEventListener('scroll', () => {
     });
     requestedPhoto = closest;
     if (closest !== activePhoto) activatePhoto(closest);
+    syncAutoplay();
   }, 100);
 }, { passive: true });
 
@@ -125,6 +138,63 @@ document.querySelector('.photo-carousel').addEventListener('keydown', event => {
 });
 new ResizeObserver(() => goToPhoto(activePhoto, true)).observe(track);
 activatePhoto(0);
+
+function syncAutoplay() {
+  clearTimeout(autoplayTimer);
+  autoplayTimer = null;
+  document.querySelector('#playback-icon').textContent = autoplayEnabled ? 'Ⅱ' : '▶';
+  document.querySelector('#playback-label').textContent = autoplayEnabled ? 'Pausar' : 'Reproducir';
+  playbackButton.setAttribute('aria-label', autoplayEnabled ? 'Pausar carrusel' : 'Reproducir carrusel');
+  const focused = carousel.querySelector(':focus-visible');
+  const keyboardReading = focused && focused !== playbackButton;
+  const running = autoplayEnabled && galleryInView && !galleryHovered && !galleryPressed && !document.hidden && !dialog.open && !keyboardReading;
+  document.querySelector('.photo-caption').setAttribute('aria-live', running ? 'off' : 'polite');
+  if (running) autoplayTimer = setTimeout(() => goToPhoto(activePhoto + 1), autoplayDelay);
+}
+
+playbackButton.addEventListener('click', () => {
+  autoplayEnabled = !autoplayEnabled;
+  // Al pedir reproducir, se permite comenzar con el puntero sobre el botón.
+  if (autoplayEnabled) galleryHovered = false;
+  syncAutoplay();
+});
+carousel.addEventListener('pointerenter', event => {
+  if (event.pointerType === 'touch') return;
+  galleryHovered = true;
+  syncAutoplay();
+});
+carousel.addEventListener('pointerleave', event => {
+  if (event.pointerType === 'touch') return;
+  galleryHovered = false;
+  syncAutoplay();
+});
+carousel.addEventListener('pointerdown', () => {
+  galleryPressed = true;
+  syncAutoplay();
+});
+function releaseGalleryPointer() {
+  if (!galleryPressed) return;
+  galleryPressed = false;
+  syncAutoplay();
+}
+window.addEventListener('pointerup', releaseGalleryPointer);
+window.addEventListener('pointercancel', releaseGalleryPointer);
+carousel.addEventListener('focusin', syncAutoplay);
+carousel.addEventListener('focusout', () => queueMicrotask(syncAutoplay));
+document.addEventListener('visibilitychange', syncAutoplay);
+motion.addEventListener('change', () => {
+  if (motion.matches) autoplayEnabled = false;
+  syncAutoplay();
+});
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(entries => {
+    galleryInView = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.25;
+    syncAutoplay();
+  }, { threshold: 0.25 }).observe(carousel);
+} else {
+  galleryInView = true;
+}
+syncAutoplay();
 
 function enlargePhoto(index) {
   enlargedPhoto = (index + portraits.length) % portraits.length;
@@ -150,4 +220,5 @@ dialog.addEventListener('click', event => {
 dialog.addEventListener('close', () => {
   document.body.classList.remove('dialog-open');
   lastPhotoOpener?.focus({ preventScroll: true });
+  syncAutoplay();
 });

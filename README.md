@@ -6,6 +6,7 @@ Landing informativa en español para visibilizar a las mujeres emprendedoras del
 
 - Diseño adaptable a móvil, tableta y escritorio.
 - Carrusel fotográfico con una imagen protagonista, vistas parciales de las siguientes, flechas grandes, siete indicadores, desplazamiento táctil y navegación por teclado. Las descripciones generales se muestran completas y las fotos se pueden ampliar.
+- Avance automático cada seis segundos, con botón para pausar o reproducir. Se detiene durante la interacción, al ampliar una foto, al salir de la vista y al cambiar de pestaña. Respeta la preferencia de movimiento reducido.
 - Composición basada en la referencia de la clienta: portada compacta, cuatro pilares centrados y detalles rosados en los bordes, con una nueva galería dedicada al trabajo cotidiano de las mujeres.
 - Misión, visión, propósito y valores proporcionados por el proyecto.
 - Llamadas a participar y contacto por Instagram.
