@@ -109,7 +109,9 @@ html{scroll-padding-top:140px}
 @media(max-width:700px){html{scroll-padding-top:104px}.brand{width:145px}.nav-wrap{min-height:92px}.brand-tagline{font-size:4.5px;letter-spacing:2.3px;margin-top:4px}.footer-main .brand{width:145px}.footer-main .brand-tagline{font-size:4.5px;letter-spacing:2.3px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
-/* Gatitos decorativos inspirados en la referencia de la marca. */
+/* Gatitos de la lámina original gatosemoji.jpeg, sin modificar el archivo. */
+.cat-filter-defs{position:absolute;pointer-events:none;overflow:hidden}
+.value-cat,.quote-cat,.purpose-cat{display:block;overflow:hidden}
 .quote-cat{width:48px;height:auto;aspect-ratio:100/88;object-fit:contain;margin:10px auto 0}
 .hero-quote .quote-cat{filter:drop-shadow(0 2px 3px #38202b45)}
 .voices-quote .quote-cat{width:54px;margin:12px 0 0 auto}
